@@ -1,0 +1,7 @@
+#phpstorm
+atlassian-ide-plugin.xml
+.idea/*
+
+# Symfony directories
+vendor
+**/vendor/*

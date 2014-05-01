@@ -1,0 +1,10 @@
+{
+    "name": "Icecat",
+    "apiVersion": "2014-05-01",
+    "baseUrl": "",
+    "description": "This is the Icecat API",
+    "operations": {
+    },
+    "models": {
+    }
+}
