@@ -5,3 +5,6 @@ atlassian-ide-plugin.xml
 # Symfony directories
 vendor
 **/vendor/*
+
+#composer file
+composer.lock
