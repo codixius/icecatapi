@@ -1,0 +1,15 @@
+parameters:
+    wk_icecat_user:  "%icecat_user%"
+    wk_icecat_pass:  "%icecat_pass%"
+    wk_icecat_lang:  "%icecat_lang%"
+    wk_icacat_url:   "%icecat_url%"
+
+services:
+    wk_icecat.icecat.connection:
+        class: Wk\IcecatApi\Lib\IcecatConnection
+        calls:
+            - [setLogger, ["@logger"]]
+            - [setUser, ["%wk_icecat_user%"]]
+            - [setPassword, ["%wk_icecat_pass%"]]
+            - [setLanguage, ["%wk_icecat_lang%"]]
+            - [setUrl, ["%wk_icacat_url%"]]

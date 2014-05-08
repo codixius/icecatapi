@@ -1,9 +1,29 @@
 {
     "name": "Icecat",
     "apiVersion": "2014-05-01",
-    "baseUrl": "",
+    "baseUrl": "https://data.icecat.biz/xml_s3/xml_server3.cgi",
     "description": "This is the Icecat API",
     "operations": {
+        "FindProductByEan": {
+            "httpMethod": "GET",
+            "uri": "",
+            "summary": "Get the product info from Icecat by using the product EAN",
+            "parameters": {
+                "ean": {
+                    "required": "true",
+                    "location": "query",
+                    "sentAs": "ean_upc"
+                },
+                "lang": {
+                    "location": "query",
+                    "default": "de"
+                },
+                "output": {
+                    "location": "query",
+                    "default": "productxml"
+                }
+            }
+        }
     },
     "models": {
     }

@@ -10,3 +10,4 @@ to "talk" with ebay you'll need to set following parameters in your parameters.y
     icecat_user: [YOUR_ICECAT_USER]
     icecat_pass: [YOUR_ICECAT_PASS]
     icecat_url:  [YOUR_ICECAT_URL]
+    icecat_lang: [LANGUAGE]
