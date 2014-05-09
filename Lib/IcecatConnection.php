@@ -39,7 +39,7 @@ class IcecatConnection extends GuzzleCommandClient
     }
 
     /**
-     * @param $user
+     * @param string $user
      */
     public function setUser($user)
     {
@@ -47,7 +47,7 @@ class IcecatConnection extends GuzzleCommandClient
     }
 
     /**
-     * @param $password
+     * @param string $password
      */
     public function setPassword($password)
     {
@@ -55,7 +55,7 @@ class IcecatConnection extends GuzzleCommandClient
     }
 
     /**
-     * @param $url
+     * @param string $url
      */
     public function setUrl($url)
     {
@@ -63,7 +63,7 @@ class IcecatConnection extends GuzzleCommandClient
     }
 
     /**
-     * @param $lang
+     * @param string $lang
      */
     public function setLanguage($lang)
     {
