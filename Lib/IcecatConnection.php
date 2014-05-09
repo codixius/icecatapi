@@ -70,6 +70,12 @@ class IcecatConnection extends GuzzleCommandClient
         $this->language = $lang;
     }
 
+    /**
+     * Method that finds the product description on icecat based on an EAN
+     * @param string $ean
+     *
+     * @return string
+     */
     public function findProductInfoByEan ($ean)
     {
         $params = array(
@@ -90,6 +96,12 @@ class IcecatConnection extends GuzzleCommandClient
         return json_encode(array("error" => $result['message']));
     }
 
+    /**
+     * Method for building the URL with the authentication.
+     * Tried it with setDefaultOption but I didn't get it working
+     *
+     * @return mixed
+     */
     private function buildUrlWithHttpAuth()
     {
         $auth = $this->user.":".$this->password."@";
