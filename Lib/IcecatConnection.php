@@ -3,6 +3,7 @@
 namespace Wk\IcecatApi\Lib;
 
 use Monolog\Logger;
+use GuzzleHttp\Stream;
 use Wk\GuzzleCommandClient\Lib\GuzzleCommandClient;
 
 /**
@@ -58,7 +59,7 @@ class IcecatConnection extends GuzzleCommandClient
      */
     public function setUrl($url)
     {
-        $this->user = $url;
+        $this->url = $url;
     }
 
     /**
@@ -71,48 +72,29 @@ class IcecatConnection extends GuzzleCommandClient
 
     public function findProductInfoByEan ($ean)
     {
-        //https://data.icecat.biz/xml_s3/xml_server3.cgi?ean_upc=4960999358246&lang=de&output=productxml
-
         $params = array(
             "ean" => $ean,
             "lang" => $this->language,
         );
 
-        $this->setHttpAuth();
+        $this->setBaseUrl($this->buildUrlWithHttpAuth());
 
         $result = $this->executeCommand('FindProductByEan', $params);
 
-        var_dump($result);
-        die();
-
         if ("success" == $result['status']) {
-            return ("Success" == $result['message']['Ack'] && isset($result['message']['Product'])) ? json_encode($result['message']['Product']) : json_encode(array("error" => "Product not found on ebay"));
+            $xml = $result['message']->xml();
+
+            return json_encode($xml);
         }
 
         return json_encode(array("error" => $result['message']));
     }
 
-
-    protected function setHttpAuth()
+    private function buildUrlWithHttpAuth()
     {
-        $this->initClient(array('config' => array('curl' => array(CURLOPT_HTTPAUTH => CURLAUTH_NTLM, CURLOPT_USERPWD => "$this->user:$this->password"))));
+        $auth = $this->user.":".$this->password."@";
+
+        return substr_replace($this->url, $auth, strpos($this->url, '://') + 3, 0);
     }
-
-    /**
-     * $client->get('/', [
-    * 'config' => [
-    * 'curl' => [
-    * CURLOPT_HTTPAUTH => CURLAUTH_NTLM,
-    * CURLOPT_USERPWD  => 'username:password'
-    * ]
-    *]
-    * ]);
-     */
-
-    //$request->setAuth('michael', 'password', CURLAUTH_DIGEST);
-    //$this->assertSame($this->request, $this->request->setAuth('michael', '123'));
-    //$this->assertEquals('michael', $this->request->getUsername());
-    //$this->assertEquals('123', $this->request->getPassword());
-
 
 }

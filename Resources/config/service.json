@@ -1,13 +1,14 @@
 {
     "name": "Icecat",
     "apiVersion": "2014-05-01",
-    "baseUrl": "https://data.icecat.biz/xml_s3/xml_server3.cgi",
+    "baseUrl": "",
     "description": "This is the Icecat API",
     "operations": {
         "FindProductByEan": {
             "httpMethod": "GET",
             "uri": "",
             "summary": "Get the product info from Icecat by using the product EAN",
+            "responseClass": "IcecatResponse",
             "parameters": {
                 "ean": {
                     "required": "true",
@@ -26,5 +27,14 @@
         }
     },
     "models": {
+        "IcecatResponse": {
+            "type": "object",
+            "properties": {
+                "Result": {
+                    "location": "xml",
+                    "type": "object"
+                }
+            }
+        }
     }
 }
