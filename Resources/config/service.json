@@ -31,7 +31,7 @@
             "type": "object",
             "properties": {
                 "Result": {
-                    "location": "xml",
+                    "location": "json",
                     "type": "object"
                 }
             }
