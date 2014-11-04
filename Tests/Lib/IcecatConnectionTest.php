@@ -5,10 +5,10 @@ namespace Wk\IcecatApi\Tests\Lib;
 
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Description;
-use GuzzleHttp\Adapter\MockAdapter;
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream;
+use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Ring\Client\MockHandler;
 
 use Wk\IcecatApi\Lib\IcecatConnection;
 
@@ -49,15 +49,8 @@ class IcecatConnectionTest extends \PHPUnit_Framework_TestCase
      */
     private function _initMockClient($jsonString)
     {
-        $response = new Response(
-            200, array(
-                'Location' => 'asgoodasnu.test.com',
-                'Content-Type' => 'application/json'
-            ), Stream\create($jsonString)
-        );
-        $adapter = new MockAdapter();
-        $adapter->setResponse($response);
-        $client = new Client(['adapter' => $adapter]);
+        $mockHandler = new MockHandler(['status' => 200, 'headers' => array('Location' => 'asgoodasnu.test.com', 'Content-Type' => 'application/json'), 'body' => Stream::factory($jsonString)]);
+        $client = new Client(['handler' => $mockHandler]);
         $json = file_get_contents(__DIR__ . "/../../Resources/config/service.json");
         $config = json_decode($json, true);
         $description = new Description($config);
