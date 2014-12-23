@@ -17,8 +17,8 @@
         }
     ],
     "require": {
-        "monolog/monolog": "~1.10",
-        "asgoodasnu/guzzlecommandclient": "0.11"
+        "monolog/monolog": "~1.11",
+        "asgoodasnu/guzzlecommandclient": "0.12"
     },
     "require-dev": {
         "phpunit/phpunit": "4.4.*"
