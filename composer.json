@@ -18,10 +18,10 @@
     ],
     "require": {
         "monolog/monolog": "1.12.0",
-        "asgoodasnu/guzzlecommandclient": "0.13"
+        "asgoodasnu/guzzlecommandclient": "0.14"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.4.*"
+        "phpunit/phpunit": "4.5.*"
     },
     "autoload": {
         "psr-4": { "Wk\\IcecatApi\\": "" }
